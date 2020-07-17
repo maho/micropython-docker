@@ -63,7 +63,7 @@ BOOT_PY=.deps/boot.py
 WEBREPL_CFG_PY=.deps/webrepl_cfg.py
 
 SSH_USER=pi
-SSH_HOST=bpii
+SSH_HOST=bpii.home
 SSH_KEY=~/.ssh/id_rsa
 SSH_USERHOST=$(SSH_USER)@$(SSH_HOST)
 SSH_CMD=ssh -i $(SSH_KEY) $(SSH_USERHOST)
@@ -116,7 +116,7 @@ $(LFIRMWARE_PATH):
 .deps/.flashed: .deps/.files_scpied
 	# scp files to banana pi
 	$(SSH_ESPTOOL) erase_flash
-	$(SSH_ESPTOOL) write_flash -z 0x1000 /tmp/firmware.bin
+	$(SSH_ESPTOOL) write_flash -z 0x1000 /tmp/$(FLAVOUR)-firmware.bin
 	touch $@
 
 ssh_install_webrepl: .deps/.webrepl_cfg_installed .deps/.boot_installed 
@@ -135,6 +135,7 @@ ssh_install_webrepl: .deps/.webrepl_cfg_installed .deps/.boot_installed
 	touch $@
 
 $(BOOT_PY): scripts/boot.py.base
+	mkdir -p .deps
 	cp $< $(BOOT_PY)
 	sed -i s/{WIFI_SSID}/$(WIFI_SSID)/g $(BOOT_PY)
 	sed -i s/{WIFI_PASS}/$(WIFI_PASS)/g $(BOOT_PY)
