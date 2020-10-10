@@ -2,8 +2,11 @@ version: "2"
 
 services:
   app:
-    extends:
-      file: docker-compose-no-device.yml
-      service: app
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
+    build: .
+    image: ${FLAVOUR}-docker
+    container_name: ${FLAVOUR}-docker
+    volumes:
+      - ./devicefs:/app/devicefs
+      - ./scripts:/app/scripts
+    stdin_open: true
+    tty: true

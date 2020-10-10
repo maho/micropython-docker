@@ -3,7 +3,7 @@ version: "2"
 services:
   app:
     extends:
-      file: docker-compose-no-device.yml
+      file: docker-compose.yml
       service: app
     volumes:
         - ~/workspace:/workspace
