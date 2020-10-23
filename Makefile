@@ -56,7 +56,7 @@ repl:
 # initialize device via ssh jumpstation
 DOCKER_CONTAINER=`$(DOCKER_COMPOSE) ps -q app`
 # firmware path in docker container
-DFIRMWARE_PATH=/app/micropython/ports/esp32/build-GENERIC/firmware.bin
+DFIRMWARE_PATH=/pycopy/ports/esp32/build-GENERIC/firmware.bin
 LFIRMWARE_PATH=dist/$(FLAVOUR)-firmware.bin
 # temporary path to boot.py and webrepl_cfg.py with substituted password/etc
 BOOT_PY=.deps/boot.py
