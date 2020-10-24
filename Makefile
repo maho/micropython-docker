@@ -5,6 +5,8 @@ export FLAVOUR?=pycopy
 
 ifeq ($(FLAVOUR), pycopy)
 	REPO=https://github.com/pfalcon/pycopy.git
+	# last working webrepl
+	BRANCH=v3.2.2
 else
 	REPO=https://github.com/micropython/micropython
 endif
@@ -27,6 +29,9 @@ help:
 
 up: 
 	$(DOCKER_COMPOSE) up -d --no-build
+
+down:
+	$(DOCKER_COMPOSE) down
 
 build:
 	$(DOCKER_COMPOSE) build --build-arg repo=$(REPO) --build-arg branch=$(BRANCH) app
@@ -56,7 +61,7 @@ repl:
 # initialize device via ssh jumpstation
 DOCKER_CONTAINER=`$(DOCKER_COMPOSE) ps -q app`
 # firmware path in docker container
-DFIRMWARE_PATH=/pycopy/ports/esp32/build-GENERIC/firmware.bin
+DFIRMWARE_PATH=/micropython/ports/esp32/build-GENERIC/firmware.bin
 # firmware in local environment
 LFIRMWARE_PATH=dist/$(FLAVOUR)-firmware.bin
 # firmware in ssh environment
