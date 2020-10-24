@@ -16,10 +16,6 @@ help:
 	@echo " make build - build firmware. available params: FLAVOUR and BRANCH"
 	@echo "				FLAVOUR - can be either micropython or pycopy"
 	@echo "				BRANCH - default master, you can override it while building"
-	@echo " make erase-esp32-flash - erase local USB connected esp32"
-	@echo " make flash-esp32-firmware - flash local USB connected esp32"
-	@echo " make configure-device - configure local USB connected esp32"
-	@echo " make repl - get REPL in local USB connected esp32"
 	@echo " ## SSH JUMPSTATION ##"
 	@echo " make flash_esp32 - flash esp32 connected to ssh jumpstation (eg. raspberry pi)"
 	@echo " make install_webrepl - install webrepl on esp32 (via jumpstation) "
@@ -40,22 +36,6 @@ build:
 
 shell: up
 	$(DOCKER_COMPOSE) exec app /bin/bash
-
-
-erase-esp32-flash:
-	@$(DOCKER_COMPOSE) run --rm app esptool.py erase_flash
-
-
-flash-esp32-firmware:
-	@$(DOCKER_COMPOSE) run --rm app /bin/bash -l scripts/flash-esp32-firmware
-
-
-configure-device:
-	@$(DOCKER_COMPOSE) run --rm app /bin/bash -l scripts/configure-device
-
-
-repl:
-	@$(DOCKER_COMPOSE) run --rm app /bin/bash -l scripts/repl
 
 
 # initialize device via ssh jumpstation

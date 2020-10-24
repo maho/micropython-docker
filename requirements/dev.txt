@@ -1,0 +1,2 @@
+esptool==2.8
+adafruit-ampy==1.0.7

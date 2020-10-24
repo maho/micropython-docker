@@ -5,8 +5,5 @@ services:
     build: .
     image: ${FLAVOUR}-docker
     container_name: ${FLAVOUR}-docker
-    volumes:
-      - ./devicefs:/app/devicefs
-      - ./scripts:/app/scripts
     stdin_open: true
     tty: true
