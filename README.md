@@ -3,12 +3,14 @@
 initially fork of https://github.com/derekenos/micropython-docker , but due do different
 goals, now is rather kind of separate project. 
 
-Docker environment to build, flash and configure webrepl in ESP32 board with Pycopy (fork of micropython): https://github.com/pfalcon/pycopy
+Docker environment to build, flash and configure webrepl in ESP32 board with Pycopy (fork
+of micropython): https://github.com/pfalcon/pycopy
 
 
 ## Build firmware 
 
-`make build`
+`make build` - build for pycopy
+`make build FLAVOUR=micropython` - build for original micropython
 
 
 ## SSH Jumpstation
